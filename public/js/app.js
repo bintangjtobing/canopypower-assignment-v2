@@ -1856,6 +1856,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1871,6 +1892,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   title: function title() {
     return 'Dashboard';
+  },
+  data: function data() {
+    return {
+      user: {}
+    };
+  },
+  created: function created() {
+    this.loadUserLoggedIn();
+  },
+  methods: {
+    loadUserLoggedIn: function loadUserLoggedIn() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var resp;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('api/getUserLoggedIn');
+
+              case 2:
+                resp = _context.sent;
+                _this.user = resp.data;
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    changeSettings: function changeSettings() {
+      this.$router.push('/detail/user/' + this.user.id);
+    }
   }
 });
 
@@ -1903,6 +1961,26 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2295,7 +2373,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 payload = {};
 
-                _.forEach(['name', 'role', 'department', 'divisi', 'gender', 'email'], function (field) {
+                _.forEach(['name', 'role', 'gender', 'email'], function (field) {
                   if (_this4.user[field]) {
                     payload[field] = _this4.user[field];
                   }
@@ -2305,10 +2383,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   payload.password = _this4.user.password;
                 }
 
-                _context3.next = 10;
+                if (!_.isEmpty(_this4.user.subscription)) {
+                  payload.subscription = _this4.user.subscription;
+                } else {
+                  payload.subscription = 0;
+                }
+
+                _context3.next = 11;
                 return axios.post('/api/users', payload);
 
-              case 10:
+              case 11:
                 _this4.loadUsers();
 
                 sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
@@ -2318,7 +2402,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
                 $('#newMember').modal('hide');
 
-              case 13:
+              case 14:
               case "end":
                 return _context3.stop();
             }
@@ -2457,6 +2541,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   title: function title() {
@@ -2507,7 +2611,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 payload = {};
 
-                _.forEach(['name', 'role', 'department', 'divisi', 'gender', 'email'], function (field) {
+                _.forEach(['name', 'role', 'gender', 'email'], function (field) {
                   if (_this2.user[field]) {
                     payload[field] = _this2.user[field];
                   }
@@ -2517,10 +2621,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   payload.password = _this2.user.password;
                 }
 
-                _context2.next = 5;
+                if (!_.isEmpty(_this2.user.subscription)) {
+                  payload.subscription = _this2.user.subscription;
+                } else {
+                  payload.subscription = 0;
+                }
+
+                _context2.next = 6;
                 return axios.patch('/api/users/' + _this2.$route.params.id, payload);
 
-              case 5:
+              case 6:
                 sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
                   icon: 'success',
                   title: 'Congratulations',
@@ -2529,7 +2639,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.$router.push('/users-management');
 
-              case 7:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -46744,21 +46854,66 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "row mt-4" }, [
+    _c("div", { staticClass: "col-lg-12" }, [
+      _c("div", { staticClass: "card card-default card-md p-5" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "atbd-empty text-center" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "atbd-empty__text" }, [
+              _c("h5", [
+                _vm._v("Welcome on Canopy Dashboard, " + _vm._s(_vm.user.name))
+              ]),
+              _vm._v(" "),
+              _vm.user.subscription == 1
+                ? _c("p", [
+                    _vm._v("Your current subscription is "),
+                    _c("u", [
+                      _vm._v(
+                        "weekly summary\n                                subscription."
+                      )
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.subscription == 2
+                ? _c("p", [
+                    _vm._v("Your current subscription is "),
+                    _c("u", [
+                      _vm._v(
+                        "weekly and monthly summary\n                                subscriptions."
+                      )
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.subscription == 0
+                ? _c("p", [_vm._v("No subscription.")])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticClass: "paragraphLink mt-3",
+                  on: { click: _vm.changeSettings }
+                },
+                [_vm._v("Change subscription plan?")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-4" }, [
-      _c("div", { staticClass: "col-lg-12" }, [
-        _c("div", { staticClass: "breadcrumb-main" }, [
-          _c("h4", { staticClass: "text-capitalize breadcrumb-title" }, [
-            _vm._v("Dashboard")
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "atbd-empty__image custom" }, [
+      _c("img", { attrs: { src: "/dashboard/img/logo-white.svg" } })
     ])
   }
 ]
@@ -47200,7 +47355,157 @@ var render = function() {
                                   ])
                                 ]),
                                 _vm._v(" "),
-                                _vm._m(2)
+                                _c("div", { staticClass: "form-group mb-20" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "checkbox-theme-default custom-checkbox"
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.user.subscription,
+                                            expression: "user.subscription"
+                                          }
+                                        ],
+                                        staticClass: "checkbox",
+                                        attrs: {
+                                          value: "1",
+                                          type: "checkbox",
+                                          id: "check-un1"
+                                        },
+                                        domProps: {
+                                          checked: Array.isArray(
+                                            _vm.user.subscription
+                                          )
+                                            ? _vm._i(
+                                                _vm.user.subscription,
+                                                "1"
+                                              ) > -1
+                                            : _vm.user.subscription
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$a = _vm.user.subscription,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = "1",
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  _vm.$set(
+                                                    _vm.user,
+                                                    "subscription",
+                                                    $$a.concat([$$v])
+                                                  )
+                                              } else {
+                                                $$i > -1 &&
+                                                  _vm.$set(
+                                                    _vm.user,
+                                                    "subscription",
+                                                    $$a
+                                                      .slice(0, $$i)
+                                                      .concat(
+                                                        $$a.slice($$i + 1)
+                                                      )
+                                                  )
+                                              }
+                                            } else {
+                                              _vm.$set(
+                                                _vm.user,
+                                                "subscription",
+                                                $$c
+                                              )
+                                            }
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _vm._m(2)
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "checkbox-theme-default custom-checkbox"
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.user.subscription,
+                                            expression: "user.subscription"
+                                          }
+                                        ],
+                                        staticClass: "checkbox",
+                                        attrs: {
+                                          value: "2",
+                                          type: "checkbox",
+                                          id: "check-un2"
+                                        },
+                                        domProps: {
+                                          checked: Array.isArray(
+                                            _vm.user.subscription
+                                          )
+                                            ? _vm._i(
+                                                _vm.user.subscription,
+                                                "2"
+                                              ) > -1
+                                            : _vm.user.subscription
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$a = _vm.user.subscription,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = "2",
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  _vm.$set(
+                                                    _vm.user,
+                                                    "subscription",
+                                                    $$a.concat([$$v])
+                                                  )
+                                              } else {
+                                                $$i > -1 &&
+                                                  _vm.$set(
+                                                    _vm.user,
+                                                    "subscription",
+                                                    $$a
+                                                      .slice(0, $$i)
+                                                      .concat(
+                                                        $$a.slice($$i + 1)
+                                                      )
+                                                  )
+                                              }
+                                            } else {
+                                              _vm.$set(
+                                                _vm.user,
+                                                "subscription",
+                                                $$c
+                                              )
+                                            }
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _vm._m(3)
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(4)
                               ]
                             )
                           ])
@@ -47227,12 +47532,12 @@ var render = function() {
           [
             _c("div", { staticClass: "table-responsive" }, [
               _c("table", { staticClass: "table mb-0 table-borderless" }, [
-                _vm._m(3),
+                _vm._m(5),
                 _vm._v(" "),
                 _c(
                   "tbody",
                   [
-                    !_vm.members.length ? _c("tr", [_vm._m(4)]) : _vm._e(),
+                    !_vm.members.length ? _c("tr", [_vm._m(6)]) : _vm._e(),
                     _vm._v(" "),
                     _vm._l(_vm.members, function(member) {
                       return _c("tr", { key: member.id }, [
@@ -47274,15 +47579,15 @@ var render = function() {
                             },
                             [
                               member.status == 1
-                                ? _c("div", [_vm._m(5, true)])
+                                ? _c("div", [_vm._m(7, true)])
                                 : _vm._e(),
                               _vm._v(" "),
                               member.status == 0
-                                ? _c("div", [_vm._m(6, true)])
+                                ? _c("div", [_vm._m(8, true)])
                                 : _vm._e(),
                               _vm._v(" "),
                               member.status == 2
-                                ? _c("div", [_vm._m(7, true)])
+                                ? _c("div", [_vm._m(9, true)])
                                 : _vm._e()
                             ]
                           )
@@ -47385,6 +47690,30 @@ var staticRenderFns = [
         },
         [_c("i", { staticClass: "fas fa-times" })]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "check-un1" } }, [
+      _c("span", { staticClass: "checkbox-text" }, [
+        _vm._v(
+          "\n                                                            Weekly report\n                                                        "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "check-un2" } }, [
+      _c("span", { staticClass: "checkbox-text" }, [
+        _vm._v(
+          "\n                                                            Monthly report\n                                                        "
+        )
+      ])
     ])
   },
   function() {
@@ -47813,7 +48142,133 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(1)
+                    _c("div", { staticClass: "form-group mb-20" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "checkbox-theme-default custom-checkbox"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.user.subscription,
+                                expression: "user.subscription"
+                              }
+                            ],
+                            staticClass: "checkbox",
+                            attrs: {
+                              type: "checkbox",
+                              "true-value": "1",
+                              id: "check-un1"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.user.subscription)
+                                ? _vm._i(_vm.user.subscription, null) > -1
+                                : _vm._q(_vm.user.subscription, "1")
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.user.subscription,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? "1" : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.user,
+                                        "subscription",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.user,
+                                        "subscription",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(_vm.user, "subscription", $$c)
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "checkbox-theme-default custom-checkbox"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.user.subscription,
+                                expression: "user.subscription"
+                              }
+                            ],
+                            staticClass: "checkbox",
+                            attrs: {
+                              type: "checkbox",
+                              "true-value": "2",
+                              id: "check-un2"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.user.subscription)
+                                ? _vm._i(_vm.user.subscription, null) > -1
+                                : _vm._q(_vm.user.subscription, "2")
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.user.subscription,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? "2" : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.user,
+                                        "subscription",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.user,
+                                        "subscription",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(_vm.user, "subscription", $$c)
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(2)
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -47864,6 +48319,30 @@ var staticRenderFns = [
               ]
             )
           ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "check-un1" } }, [
+      _c("span", { staticClass: "checkbox-text" }, [
+        _vm._v(
+          "\n                                            Weekly report\n                                        "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "check-un2" } }, [
+      _c("span", { staticClass: "checkbox-text" }, [
+        _vm._v(
+          "\n                                            Monthly report\n                                        "
         )
       ])
     ])

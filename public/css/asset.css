@@ -24085,6 +24085,16 @@ figcaption .explainCareers .descCareer {
     margin-left: 1rem;
     margin-bottom: 20px;
 }
+
+.atbd-empty .custom img {
+    width: 150px;
+    background-color: #008272;
+    padding: 5px 12px;
+}
+
+.paragraphLink {
+    cursor: pointer;
+}
 .marker-cluster-small {
 	background-color: rgba(181, 226, 140, 0.6);
 	}

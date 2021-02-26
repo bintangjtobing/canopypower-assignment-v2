@@ -9,11 +9,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Users API
 Route::get('/users', 'apiController@getUsers');
+Route::get('/getUserLoggedIn', 'apiController@getLoggedUser');
 Route::get('/user/{id}', 'apiController@getUserbyId');
-Route::delete('/users/{id}', 'apiController@deleteUser');
-Route::post('/users', 'apiController@addUser');
 Route::get('/count-users', 'apiController@countUsers');
+Route::post('/users', 'apiController@addUser');
 Route::patch('/users/{id}', 'apiController@updateUser');
+Route::delete('/users/{id}', 'apiController@deleteUser');
 
 // Check user data first
 Route::post('/users/check-user-data', 'apiController@checkUserData');

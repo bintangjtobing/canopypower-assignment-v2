@@ -66,6 +66,7 @@ class apiController extends Controller
             $randVal = $arr[0];
             $user->avatar = $randVal . '.jpg';
         }
+        $user->subscription = $request->subscription;
         $user->password = Hash::make($request->password);
         $user->save();
 
@@ -85,7 +86,7 @@ class apiController extends Controller
     public function updateUser($id, Request $request)
     {
         $user = User::find($id);
-        foreach (['name', 'role', 'gender', 'email'] as $field) {
+        foreach (['name', 'role', 'gender', 'email', 'subscription'] as $field) {
             if (isset($request->{$field})) {
                 $user->{$field} = $request->{$field};
             }

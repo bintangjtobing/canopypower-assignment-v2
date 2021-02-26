@@ -39,7 +39,9 @@
                                     </div>
                                     <div>
                                         <h6>{{auth()->user()->name}}</h6>
-                                        <span>{{auth()->user()->divisi}}</span>
+                                        <span>@if(auth()->user()->subscription == 1)Weekly
+                                            Subscription @elseif(auth()->user()->subscription == 2)Weekly & Monthly
+                                            Subscription @else No subscriptions @endif</span>
                                     </div>
                                 </div>
                                 <div class="nav-author__options">

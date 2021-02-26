@@ -66,6 +66,26 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group mb-20">
+                                    <div class="checkbox-theme-default custom-checkbox">
+                                        <input type="checkbox" class="checkbox" true-value="1"
+                                            v-model="user.subscription" id="check-un1">
+                                        <label for="check-un1">
+                                            <span class="checkbox-text">
+                                                Weekly report
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-theme-default custom-checkbox">
+                                        <input type="checkbox" class="checkbox" true-value="2"
+                                            v-model="user.subscription" id="check-un2">
+                                        <label for="check-un2">
+                                            <span class="checkbox-text">
+                                                Monthly report
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="button-group d-flex pt-25">
                                     <button type="submit"
                                         class="btn btn-primary btn-default btn-squared text-capitalize">Update
@@ -101,13 +121,18 @@
             },
             async handleSubmit() {
                 const payload = {};
-                _.forEach(['name', 'role', 'department', 'divisi', 'gender', 'email'], (field) => {
+                _.forEach(['name', 'role', 'gender', 'email'], (field) => {
                     if (this.user[field]) {
                         payload[field] = this.user[field];
                     }
                 });
                 if (!_.isEmpty(this.user.password)) {
                     payload.password = this.user.password;
+                }
+                if (!_.isEmpty(this.user.subscription)) {
+                    payload.subscription = this.user.subscription;
+                } else {
+                    payload.subscription = 0;
                 }
                 await axios.patch('/api/users/' + this.$route.params.id, payload);
                 Swal.fire({
