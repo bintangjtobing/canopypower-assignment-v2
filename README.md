@@ -35,4 +35,8 @@
 - And then you will see the dashboards.
 - As your assignment, i've been already completed that.
 
-
+## Several Screenshot
+This is several screenshot view of my assignment. Please take a look.
+![Dashboard](https://ibb.co/SXRgJVH)
+![Login page](https://ibb.co/VQZ11YH)
+![User page](https://ibb.co/f8yTTxB)
