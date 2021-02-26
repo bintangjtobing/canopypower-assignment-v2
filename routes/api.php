@@ -18,3 +18,7 @@ Route::delete('/users/{id}', 'apiController@deleteUser');
 
 // Check user data first
 Route::post('/users/check-user-data', 'apiController@checkUserData');
+
+// Incident Route API
+Route::get('/incident', 'apiController@getIncident');
+

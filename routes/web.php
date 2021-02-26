@@ -11,6 +11,7 @@ Route::get('/sign-out', function () {
     auth()->logout();
     return redirect('/');
 });
+Route::get('/generatepdf', 'apiController@generatepdf');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/{any}', function () {
         return view('layout');

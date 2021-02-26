@@ -6,16 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade as PDF;
 
 use App\User;
-use App\album_photos;
-use App\albums;
-use App\changeLog;
-use App\commentIssue;
-use App\id_agamas;
-use App\issue;
-use App\id_domisilis;
-use App\jobvacancy;
+use App\incidents;
 
 class apiController extends Controller
 {
@@ -96,5 +90,16 @@ class apiController extends Controller
         }
         $user->save();
         return response()->json($user);
+    }
+    public function getIncident()
+    {
+        return incidents::all();
+    }
+    public function generatepdf()
+    {
+        $data = incidents::all();
+        $pdf = PDF::loadView('pdf', compact('data', $data));
+        return $pdf->download('Generate incident summary');
+        // return view('pdf');
     }
 }

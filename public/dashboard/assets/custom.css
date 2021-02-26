@@ -222,3 +222,7 @@ figcaption .explainCareers .descCareer {
 .paragraphLink {
     cursor: pointer;
 }
+
+.header-top {
+    background-color: #023b2e !important;
+}

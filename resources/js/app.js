@@ -19,6 +19,7 @@ Vue.use(VueRouter, VueAxios, Axios, VueSweetalert2);
 import Index from './components/index.vue';
 import UserLists from './components/user-lists.vue';
 import userForm from './components/userForm.vue';
+import overviewIncident from './components/incidentForm.vue'
 
 // membuat router
 const routes = [{
@@ -33,6 +34,10 @@ const routes = [{
     name: 'update-user',
     path: '/detail/user/:id',
     component: userForm,
+}, {
+    name: 'incident-overview',
+    path: '/incident/overview',
+    component: overviewIncident,
 }]
 
 const router = new VueRouter({

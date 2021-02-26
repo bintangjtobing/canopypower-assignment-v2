@@ -24095,6 +24095,10 @@ figcaption .explainCareers .descCareer {
 .paragraphLink {
     cursor: pointer;
 }
+
+.header-top {
+    background-color: #023b2e !important;
+}
 .marker-cluster-small {
 	background-color: rgba(181, 226, 140, 0.6);
 	}
