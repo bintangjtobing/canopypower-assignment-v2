@@ -40,3 +40,4 @@ This is several screenshot view of my assignment. Please take a look.
 ![Dashboard](dashboard.png)
 ![Login page](login.png)
 ![User page](user.png)
+![Pdf gif](pdf.gif)
