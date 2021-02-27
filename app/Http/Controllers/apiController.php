@@ -10,6 +10,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 use App\User;
 use App\incidents;
+use Illuminate\Support\Facades\Date;
 
 class apiController extends Controller
 {
@@ -99,7 +100,8 @@ class apiController extends Controller
     {
         $data = incidents::all();
         $pdf = PDF::loadView('pdf', compact('data', $data));
-        return $pdf->download('Generate incident summary');
+        $now = Date('d M Y');
+        return $pdf->download('Generate incident summary ' . $now);
         // return view('pdf');
     }
 }

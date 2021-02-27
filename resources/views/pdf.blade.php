@@ -122,7 +122,7 @@
           <table>
             <tr>
               <td class="title">
-                <img src="{!!asset('dashboard/img/logo-color.svg')!!}" style="width:240px;">
+                <img src="{!!public_path('dashboard/img/logo-color.svg')!!}" style="width:240px;">
               </td>
             </tr>
           </table>
